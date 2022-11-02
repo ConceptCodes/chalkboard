@@ -1,15 +1,13 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import CanvasDraw from "react-canvas-draw";
-import { useIsMobileOrTablet } from "./hooks/useIsMobileOrTablet";
 import { useHotkeys } from "react-hotkeys-hook";
 import { useEffect, useRef, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Home: NextPage = () => {
-  const isMobOrTab = useIsMobileOrTablet();
-  const canvasRef = useRef(null);
+  const canvasRef = useRef<any>(null);
   const [brushSize, setSize] = useState(5);
   const [brushColor, setColor] = useState("white");
 
@@ -49,11 +47,11 @@ const Home: NextPage = () => {
   });
 
   const clear: () => void = () => {
-    canvasRef?.current.eraseAll();
+    canvasRef.current?.eraseAll();
   };
 
   const undo: () => void = () => {
-    canvasRef?.current.undo();
+    canvasRef?.current?.undo();
   };
 
   const colors = [
@@ -118,7 +116,7 @@ const Home: NextPage = () => {
           }}
           brushRadius={brushSize}
           hideGrid={true}
-          enablePanAndZoom={isMobOrTab}
+          enablePanAndZoom={false}
           brushColor={brushColor}
         />
       </>
